@@ -43,6 +43,28 @@
  * work.
  */
 
+#[path = "./game_address_struct.rs"]
 mod game_address_struct;
-mod game_offset;
-mod game_ordinal;
+
+extern {
+  /**
+   * Initializes a GameAddress. The base library is specified using its ID. The
+   * game address locator is specified as the address's ordinal value.
+   */
+  pub fn MAPI_GameAddress_InitFromLibraryIdAndOrdinal(
+      game_address: *mut game_address_struct::MAPI_GameAddress,
+      library_id: i32,
+      ordinal: i16
+  );
+
+  /**
+   * Initializes a GameAddress. The base library is specified using its path,
+   * encoded in UTF-8. The game address locator is specified as the address's
+   * ordinal value.
+   */
+  pub fn MAPI_GameAddress_InitFromLibraryPathAndOrdinal(
+      game_address: *mut game_address_struct::MAPI_GameAddress,
+      library_path: *const u8,
+      ordinal: i16
+  );
+}
