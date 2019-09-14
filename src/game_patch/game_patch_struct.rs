@@ -43,5 +43,39 @@
  * work.
  */
 
-mod game_address;
-mod game_patch;
+#[path = "../game_address/game_address_struct.rs"]
+mod game_address_struct;
+
+#[repr(C)]
+pub struct MAPI_GamePatch {
+  game_address: game_address_struct::MAPI_GameAddress,
+  is_patch_applied: bool,
+  patch_buffer: *mut u8,
+  old_buffer: *mut u8,
+  patch_size: usize // TODO: Use size_t
+}
+
+extern {
+  /**
+   * Deinitializes the specified game patch.
+   */
+  pub fn MAPI_GamePatch_Deinit(
+      game_patch: *mut MAPI_GamePatch
+  );
+
+  /**
+   * Applies the game patch by replacing the bytes at its target address with
+   * the bytes stored in its buffer.
+   */
+  pub fn MAPI_GamePatch_Apply(
+    game_patch: *mut MAPI_GamePatch
+  );
+
+  /**
+   * Removes the effects of the game patch by restoring the original state of
+   * the bytes at its target address.
+   */
+  pub fn MAPI_GamePatch_Remove(
+    game_patch: *mut MAPI_GamePatch
+  );
+}
