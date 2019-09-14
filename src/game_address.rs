@@ -43,5 +43,5 @@
  * work.
  */
 
-#[path = "game_address/game_offset.rs"]
+mod game_address_struct;
 mod game_offset;
