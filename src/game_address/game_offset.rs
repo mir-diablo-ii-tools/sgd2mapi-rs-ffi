@@ -47,9 +47,25 @@
 mod game_address_struct;
 
 extern {
+  /**
+   * Initializes a GameAddress. The base library is specified using its ID. The
+   * game address locator is specified as the offset from the module base
+   * address to the target address.
+   */
   pub fn MAPI_GameAddress_InitFromLibraryIdAndOffset(
       game_address: *mut game_address_struct::MAPI_GameAddress,
       library_id: i32,
       offset: isize
-  );  
+  );
+
+  /**
+   * Initializes a GameAddress. The base library is specified using its path,
+   * encoded in UTF-8. The game address locator is specified as the offset from
+   * the module base address to the target address.
+   */
+  pub fn MAPI_GameAddress_InitFromLibraryPathAndOffset(
+      game_address: *mut game_address_struct::MAPI_GameAddress,
+      library_path: *const u8,
+      offset: isize
+  );
 }
