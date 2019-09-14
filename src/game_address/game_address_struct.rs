@@ -45,5 +45,5 @@
 
 #[repr(C)]
 pub struct MAPI_GameAddress {
-  raw_address: isize
+  pub raw_address: isize
 }
