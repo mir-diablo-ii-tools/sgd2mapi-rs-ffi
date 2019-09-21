@@ -43,7 +43,9 @@
  * work.
  */
 
-use super::game_address_struct;
+extern crate libc;
+
+pub use super::game_address_struct::MAPI_GameAddress;
 
 extern {
   /**
@@ -52,9 +54,9 @@ extern {
    * address to the target address.
    */
   pub fn MAPI_GameAddress_InitFromLibraryIdAndOffset(
-      game_address: *mut game_address_struct::MAPI_GameAddress,
-      library_id: i32,
-      offset: isize
+      game_address: *mut MAPI_GameAddress,
+      library_id: libc::c_int,
+      offset: libc::intptr_t
   );
 
   /**
@@ -63,8 +65,8 @@ extern {
    * the module base address to the target address.
    */
   pub fn MAPI_GameAddress_InitFromLibraryPathAndOffset(
-      game_address: *mut game_address_struct::MAPI_GameAddress,
-      library_path: *const u8,
-      offset: isize
+      game_address: *mut MAPI_GameAddress,
+      library_path: *const libc::c_char,
+      offset: libc::intptr_t
   );
 }
