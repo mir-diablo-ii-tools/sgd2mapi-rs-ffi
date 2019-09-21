@@ -43,7 +43,9 @@
  * work.
  */
 
-use super::game_address_struct;
+extern crate libc;
+
+pub use super::game_address_struct::MAPI_GameAddress;
 
 extern {
   /**
@@ -51,8 +53,8 @@ extern {
    * game address locator is specified as the address's ordinal value.
    */
   pub fn MAPI_GameAddress_InitFromLibraryIdAndOrdinal(
-      game_address: *mut game_address_struct::MAPI_GameAddress,
-      library_id: i32,
+      game_address: *mut MAPI_GameAddress,
+      library_id: libc::c_int,
       ordinal: i16
   );
 
@@ -62,8 +64,8 @@ extern {
    * ordinal value.
    */
   pub fn MAPI_GameAddress_InitFromLibraryPathAndOrdinal(
-      game_address: *mut game_address_struct::MAPI_GameAddress,
-      library_path: *const u8,
+      game_address: *mut MAPI_GameAddress,
+      library_path: *const libc::c_char,
       ordinal: i16
   );
 }
