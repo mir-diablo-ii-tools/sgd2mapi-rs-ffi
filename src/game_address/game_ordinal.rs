@@ -43,8 +43,7 @@
  * work.
  */
 
-#[path = "./game_address_struct.rs"]
-mod game_address_struct;
+use super::game_address_struct;
 
 extern {
   /**
