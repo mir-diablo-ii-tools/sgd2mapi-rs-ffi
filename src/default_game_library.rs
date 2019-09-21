@@ -43,6 +43,21 @@
  * work.
  */
 
-pub mod default_game_library;
-pub mod game_address;
-pub mod game_patch;
+extern crate libc;
+
+extern {
+  pub fn MAPI_GetGameExecutablePath(
+      dest: *mut libc::c_char
+  ) -> *mut libc::c_char;
+
+  pub fn MAPI_GetGameExecutablePathSize() -> libc::size_t;
+
+  pub fn MAPI_GetDefaultLibraryPathWithRedirect(
+      dest: *mut libc::c_char,
+      library_id: libc::c_int
+  ) -> *mut libc::c_char;
+
+  pub fn MAPI_GetDefaultLibraryPathWithRedirectSize(
+      library_id: libc::c_int
+  ) -> libc::size_t;
+}
