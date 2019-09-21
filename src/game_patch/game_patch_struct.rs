@@ -43,8 +43,9 @@
  * work.
  */
 
-#[path = "../game_address/game_address_struct.rs"]
-mod game_address_struct;
+extern crate libc;
+
+use crate::game_address::game_address_struct;
 
 #[repr(C)]
 pub struct MAPI_GamePatch {
@@ -52,7 +53,7 @@ pub struct MAPI_GamePatch {
   is_patch_applied: bool,
   patch_buffer: *mut u8,
   old_buffer: *mut u8,
-  patch_size: usize // TODO: Use size_t
+  patch_size: libc::size_t
 }
 
 extern {
@@ -68,7 +69,7 @@ extern {
    * the bytes stored in its buffer.
    */
   pub fn MAPI_GamePatch_Apply(
-    game_patch: *mut MAPI_GamePatch
+      game_patch: *mut MAPI_GamePatch
   );
 
   /**
@@ -76,6 +77,6 @@ extern {
    * the bytes at its target address.
    */
   pub fn MAPI_GamePatch_Remove(
-    game_patch: *mut MAPI_GamePatch
+      game_patch: *mut MAPI_GamePatch
   );
 }
