@@ -43,7 +43,9 @@
  * work.
  */
 
+extern crate libc;
+
 #[repr(C)]
 pub struct MAPI_GameAddress {
-  pub raw_address: isize
+  pub raw_address: libc::intptr_t
 }
