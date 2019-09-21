@@ -43,4 +43,4 @@
  * work.
  */
 
-mod game_patch_struct;
+pub mod game_patch_struct;

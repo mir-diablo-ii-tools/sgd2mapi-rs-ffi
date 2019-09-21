@@ -43,5 +43,5 @@
  * work.
  */
 
-mod game_address;
-mod game_patch;
+pub mod game_address;
+pub mod game_patch;

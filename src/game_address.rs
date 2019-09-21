@@ -43,6 +43,6 @@
  * work.
  */
 
-mod game_address_struct;
-mod game_offset;
-mod game_ordinal;
+pub mod game_address_struct;
+pub mod game_offset;
+pub mod game_ordinal;
