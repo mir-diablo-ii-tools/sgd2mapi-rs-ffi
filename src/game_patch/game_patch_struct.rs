@@ -49,11 +49,11 @@ use crate::game_address::game_address_struct;
 
 #[repr(C)]
 pub struct MAPI_GamePatch {
-  game_address: game_address_struct::MAPI_GameAddress,
-  is_patch_applied: bool,
-  patch_buffer: *mut u8,
-  old_buffer: *mut u8,
-  patch_size: libc::size_t
+  pub game_address: game_address_struct::MAPI_GameAddress,
+  pub is_patch_applied: bool,
+  pub patch_buffer: *mut u8,
+  pub old_buffer: *mut u8,
+  pub patch_size: libc::size_t
 }
 
 extern {
